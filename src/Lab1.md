@@ -15,11 +15,11 @@ title: Лабораторная работа 1
 
 * Все команды языка T-SQL набираются на вкладке нового запроса (SQLQuery).
 
-* Для создания запроса на панели инструментов необходимо нажать кнопку ![new_query.png](assets%2Fnew_query.png)
+* Для создания запроса на панели инструментов необходимо нажать кнопку ![new_query.png](assets/new_query.png)
 * либо выбрать соответствующую команду в контекстном меню баз данных
-* ![new_query_cntx.png](assets%2Fnew_query_cntx.png)
+* ![new_query_cntx.png](assets/new_query_cntx.png)
 *
-* Для выполнения команд языка T-SQL на панели инструментов необходимо нажать кнопку ![go.png](assets%2Fgo.png)
+* Для выполнения команд языка T-SQL на панели инструментов необходимо нажать кнопку ![go.png](assets/go.png)
 * или на вкладке нового запроса набрать команду GO.
 *
 * Для создания нового файла данных используется команда CREATE DATABASE, которая имеет следующий синтаксис:
@@ -156,7 +156,8 @@ CONSTRAINT PK_employees PRIMARY KEY E_ID
 ```
 ---
 
-### [Удаление и переименование таблиц] (https://metanit.com/sql/sqlserver/3.2.php)
+### [Удаление и переименование таблиц](https://metanit.com/sql/sqlserver/3.2.php)
+
 ---
 
 ### Связывание таблиц с помощью конструкции [FOREIGN KEY](https://metanit.com/sql/sqlserver/3.5.php)
