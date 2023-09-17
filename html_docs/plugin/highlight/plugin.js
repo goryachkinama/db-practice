@@ -1,4 +1,4 @@
-import hljs from 'highlight.js'
+import hljs from 'html_docs/plugin/highlight/highlight.js'
 
 /* highlightjs-line-numbers.js 2.6.0 | (C) 2018 Yauheni Pakala | MIT License | github.com/wcoder/highlightjs-line-numbers.js */
 /* Edited by Hakim for reveal.js; removed async timeout */

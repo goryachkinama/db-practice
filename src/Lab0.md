@@ -79,7 +79,7 @@ DCL (Data Control Language / Язык управления доступа к д�
   MS SQL Server использует два режима аутентификации: Windows и MS SQL Server (SQL Server authentication). 
   По умолчанию используется аутентификация Windows
  
-![SQL Server Management Studio](../docs/assets/lab1/ssms.png)
+![SQL Server Management Studio](../html_docs/assets/lab1/ssms.png)
 
 ---
 
