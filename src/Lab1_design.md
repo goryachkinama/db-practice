@@ -2,14 +2,14 @@
 title: Задания на тренировку создания связанных таблиц
 ---
 
-### [Задание 1](assets/design/DataScheme1.xlsx)
+### [Задание 1](assets/lab1_design/DataScheme1.xlsx)
 
 ---
 
-### [Задание 2](assets/design/DataScheme2.xlsx)
+### [Задание 2](assets/lab1_design/DataScheme2.xlsx)
 
 ---
 
-[Следующие задания >>>](Lab3.md)
+[Следующие задания >>>](Lab2.md)
 
 [К списку лабораторных >>>](../README.md)
