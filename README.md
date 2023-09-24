@@ -86,8 +86,6 @@
 7. Функции NEWID, ISNULL и COALESCE
 8. [SOME | ANY](https://learn.microsoft.com/ru-ru/sql/t-sql/language-elements/some-any-transact-sql?view=sql-server-ver16)
 
----
-
 + 12 заданий
 
 * составить 5 запросов с командой select с использование функций cast / convert для преобразования в тип float
