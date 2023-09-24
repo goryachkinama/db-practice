@@ -106,11 +106,11 @@
 
 ### 6. Подзапросы и соединение таблиц
 
-* 1.Подзапросы
-* 2.Предикат [EXISTS](https://learn.microsoft.com/ru-ru/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver16)
-* 3.INNER JOIN и OUTER JOIN
-* 4.Изучить группировки данных.
-* 5.Изучить применение фильтрации в группировке данных.
+1. Подзапросы
+2. Предикат [EXISTS](https://learn.microsoft.com/ru-ru/sql/t-sql/language-elements/exists-transact-sql?view=sql-server-ver16)
+3. INNER JOIN и OUTER JOIN
+4. Изучить группировки данных.
+5. Изучить применение фильтрации в группировке данных.
 
   
 ### 7. Переменные и управляющие конструкции
