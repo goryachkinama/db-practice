@@ -17,6 +17,14 @@ title: Лабораторная работа 4
 
 ### Функции проверки значений
 
+### *Функции NEWID, ISNULL и COALESCE
+
+### SYSDATETIME()
+
+*ALTER TABLE Employees ADD CONSTRAINT DF_Employees_HireDate DEFAULT SYSDATETIME() FOR HireDate
+
+### Ещё
+
 Список часто используемых:
 
 * ISDATE(выражение) - возвращает 1, если выражение имеет допустимое значение типа даты и времени, иначе возвращает значение 0
