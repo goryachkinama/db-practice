@@ -552,6 +552,53 @@ VALUES ('Tom', 'Smith', '+36436734', NULL),
 
 ---
 
+### Примеры
+
+Вывести абсолютное значение тригонометрических функций на точке π:
+```sql
+SELECT
+ABS(COS(PI())) AS Косинус_Пи
+,ABS(SIN(PI())) AS Синус_Пи
+,ABS(TAN(PI())) AS Тангенс_Пи
+,ABS(COT(PI())) AS КоТангенс_Пи
+```
+
+Вывести день, месяц, год, час, минуту, секунду, номер квартала, номер недели, день года, день недели для текущей даты и времени:
+```sql
+SELECT
+DAY(GETDATE()) AS День
+,MONTH(GETDATE()) AS Месяц
+,YEAR(GETDATE()) AS Год
+,DATEPART(HOUR, GETDATE()) AS Час
+,DATEPART(MINUTE, GETDATE()) AS Минута
+,DATEPART(SECOND, GETDATE()) AS Секунда
+,DATEPART(QUARTER, GETDATE()) AS Квартал
+,DATEPART(WEEK, GETDATE()) AS Неделя
+,DATEPART(DAYOFYEAR, GETDATE()) AS День_года
+,DATEPART(WEEKDAY, GETDATE()) AS День_недели
+```
+
+Вывести ФИО и время года рождения каждого академика:
+```sql
+SELECT
+ФИО
+, CASE MONTH(Дата_рождения)
+WHEN 3 THEN 'Весна'
+WHEN 4 THEN 'Весна'
+WHEN 5 THEN 'Весна'
+WHEN 6 THEN 'Лето'
+WHEN 7 THEN 'Лето'
+WHEN 8 THEN 'Лето'
+WHEN 9 THEN 'Осень'
+WHEN 10 THEN 'Осень'
+WHEN 11 THEN 'Осень'
+ELSE 'Зима'
+END AS Времени_года
+FROM Академики
+```
+
+---
+
 ### Задание по таблице академиков
 
 1. Вывести список академиков, отсортированный по количеству символов в ФИО.
@@ -568,5 +615,10 @@ VALUES ('Tom', 'Smith', '+36436734', NULL),
 12. Вывести список специализаций без повторений. Для каждой специализации вывести «длинный» или «короткий», 
     в зависимости от количества символов.
 
-
 ---
+
+[Таблица академиков](assets/lab2/Академики.xlsx)
+
+[К списку лабораторных >>>](../README.md)
+
+
