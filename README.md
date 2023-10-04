@@ -94,8 +94,7 @@
 5. Изучить встроенные функции преобразования данных.
 6. *Изучить CASE и IIF.
 7. *Функции проверки значений
-8. *Функции NEWID, ISNULL и COALESCE
-9. *ALTER TABLE Employees ADD CONSTRAINT DF_Employees_HireDate DEFAULT SYSDATETIME() FOR HireDate
+8. *Функция NEWID
 
 + 12 заданий
 
