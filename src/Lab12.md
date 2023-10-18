@@ -34,8 +34,7 @@ title: Лабораторная работа 12
 
 Например, есть таблица «Автомобили»:
 
-
-<img src="[drawing.jpg](https://user-images.githubusercontent.com/144112831/b822043e-ca27-4a20-875d-10beff833314.png)" alt="drawing" width="300"/>
+<img src="[drawing.jpg](assets/Screenshot from 2023-10-18 12-53-59.png)" alt="drawing" width="300"/>
 
 Нарушение нормализации 1НФ происходит в моделях BMW, т.к. в одной ячейке содержится список из 3 элементов: M5, X5M, M1, 
 т.е. он не является атомарным. Преобразуем таблицу к 1НФ:
