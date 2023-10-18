@@ -121,7 +121,7 @@ ORDER BY
   
 ---
 
-#### [Внутреннее соединение таблиц: INNER JOIN] (https://metanit.com/sql/sqlserver/7.2.php)
+#### [Внутреннее соединение таблиц: INNER JOIN](https://metanit.com/sql/sqlserver/7.2.php)
 
 Внутреннее соединение – осуществляется с помощью команды INNER JOIN.
 Из двух таблиц берутся только связанные строки.
