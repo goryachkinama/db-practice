@@ -39,11 +39,8 @@ title: Лабораторная работа 12
 
 Нарушение нормализации 1НФ происходит в моделях BMW, т.к. в одной ячейке содержится список из 3 элементов: M5, X5M, M1, 
 т.е. он не является атомарным. Преобразуем таблицу к 1НФ:
-https://user-images.githubusercontent.com/144112831/276111739-0c6e7e5d-122a-49e6-bcc6-ab8cad68a50e.png
-<img src="[drawing.jpg](https://user-images.githubusercontent.com/144112831/b822043e-ca27-4a20-875d-10beff833314.png)" alt="drawing" width="300"/>
 
-![Screenshot from 2023-10-18 12-54-35](https://github.com/goryachkinama/db-practice/assets/144112831/0c6e7e5d-122a-49e6-bcc6-ab8cad68a50e)
-// рис.2
+<img src="[drawing.jpg](https://user-images.githubusercontent.com/144112831/276111739-0c6e7e5d-122a-49e6-bcc6-ab8cad68a50e.png)" alt="drawing" width="300"/>
 
 ### Вторая нормальная форма
 
