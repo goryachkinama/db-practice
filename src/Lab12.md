@@ -39,7 +39,7 @@ title: Лабораторная работа 12
 Нарушение нормализации 1НФ происходит в моделях BMW, т.к. в одной ячейке содержится список из 3 элементов: M5, X5M, M1, 
 т.е. он не является атомарным. Преобразуем таблицу к 1НФ:
 
-<img src="[drawing.jpg](https://user-images.githubusercontent.com/144112831/276111739-0c6e7e5d-122a-49e6-bcc6-ab8cad68a50e.png)" alt="drawing" width="300"/>
+<img src="assets/Screenshot%20from%202023-10-18%2012-54-35.png" alt="drawing" width="300"/>
 
 ### Вторая нормальная форма
 
@@ -49,16 +49,16 @@ title: Лабораторная работа 12
 от которого можно также вывести данную функциональную зависимость.
 
 Например, дана таблица:
-![Screenshot from 2023-10-18 12-55-18](https://github.com/goryachkinama/db-practice/assets/144112831/c3f3d7e6-ca2f-4645-9477-26b6344218fd)
-// pic.3
+
+<img src="assets/Screenshot%20from%202023-10-18%2012-55-18.png" alt="drawing" width="300"/>
 
 Таблица находится в первой нормальной форме, но не во второй. Цена машины зависит от модели и фирмы. 
 Скидка зависят от фирмы, то есть зависимость от первичного ключа неполная. 
 Исправляется это путем декомпозиции на два отношения, в которых не ключевые атрибуты зависят от ПК.
-![Screenshot from 2023-10-18 12-56-12](https://github.com/goryachkinama/db-practice/assets/144112831/3eb0b101-015e-40b8-a79e-e9ff939fc2de)
-// pic.4
-![Screenshot from 2023-10-18 12-56-18](https://github.com/goryachkinama/db-practice/assets/144112831/144eec68-20d6-4f66-ac1b-40440d1ed7c4)
-// pic.5
+
+<img src="assets/Screenshot%20from%202023-10-18%2012-56-12.png" alt="drawing" width="300"/>
+
+<img src="assets/Screenshot%20from%202023-10-18%2012-56-18.png" alt="drawing" width="300"/>
 
 ### Третья нормальная форма
 
@@ -67,8 +67,8 @@ title: Лабораторная работа 12
 содержимое которых может относиться к нескольким записям таблицы в отдельные таблицы.
 
 Рассмотрим таблицу:
-![Screenshot from 2023-10-18 12-56-55](https://github.com/goryachkinama/db-practice/assets/144112831/74d65e48-b77b-4d61-a1c8-e503631ba008)
-// pic.6
+
+<img src="assets/Screenshot%20from%202023-10-18%2012-56-55.png" alt="drawing" width="300"/>
 
 Таблица находится во 2НФ, но не в 3НФ.
 В отношении атрибут «Модель» является первичным ключом. Личных телефонов у автомобилей нет, 
@@ -79,10 +79,10 @@ title: Лабораторная работа 12
 
 Зависимость Модель → Телефон является транзитивной, следовательно, отношение не находится в 3НФ.
 В результате разделения исходного отношения получаются два отношения, находящиеся в 3НФ:
-![Screenshot from 2023-10-18 12-57-42](https://github.com/goryachkinama/db-practice/assets/144112831/2b55c60c-62bc-4021-9c5a-701837afcc38)
-// pic.7
-![Screenshot from 2023-10-18 12-57-49](https://github.com/goryachkinama/db-practice/assets/144112831/4d6e48f1-748a-40fb-b09b-822a99990cf1)
-// pic.8
+
+<img src="assets/Screenshot%20from%202023-10-18%2012-57-42.png" alt="drawing" width="300"/>
+
+<img src="assets/Screenshot%20from%202023-10-18%2012-57-49.png" alt="drawing" width="300"/>
 
 ### Денормализация
 
