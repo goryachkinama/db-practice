@@ -4,8 +4,6 @@ title: Лабораторная работа 8. Представления. Та
 
 [Таблица стран](assets/lab3/Страны.xlsx)
 
-[Таблица учеников](assets/lab5/Students.xlsx)
-
 [Таблицы студентов](assets/lab6/Students.xlsx)
 
 [К списку лабораторных >>>](../README.md)
