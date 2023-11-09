@@ -289,7 +289,7 @@ PRINT @factorial
 
 ---
 
-### [try/catch и Обработка ошибок](https://metanit.com/sql/sqlserver/9.5.php)
+### [TRY/CATCH и Обработка ошибок](https://metanit.com/sql/sqlserver/9.5.php)
 
 Для обработки ошибок в T-SQL применяется конструкция TRY...CATCH. 
 
@@ -333,7 +333,7 @@ END CATCH
 
 ---
 
-### GO
+### [GO](https://metanit.com/sql/sqlserver/3.7.php)
 
 GO \[count\]  - команда
 Count - целое положительное число. Пакет, предшествующий команде GO, будет выполняться заданное количество раз.
