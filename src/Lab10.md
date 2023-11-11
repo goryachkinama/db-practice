@@ -228,5 +228,80 @@ INDEX IDX_Employees_Name(Name)
 Индексы могут повысить скорость выборки данных (SELECT), но индексы уменьшают скорость модификации данных таблицы, 
 т.к. после каждой модификации системе будет необходимо перестроить все индексы для конкретной таблицы.
 
+---
+
+### ON DELETE и ON UPDATE
+
+Напоследок стоит сказать, что ссылочные ключи могут включать дополнительные опции 
+ON DELETE CASCADE и ON UPDATE CASCADE, которые говорят о том, как вести себя при удалении или обновлении записи, 
+на которую есть ссылки в таблице-справочнике. 
+
+Если эти опции не указаны, то мы не можем изменить ID в таблице справочнике у той записи, 
+на которую есть ссылки из другой таблицы, так же мы не сможем удалить такую запись из справочника, 
+пока не удалим все строки, ссылающиеся на эту запись или, же обновим в этих строках ссылки на другое значение.
+
+Для примера пересоздадим таблицу с указанием опции ON DELETE CASCADE для FK_Employees_DepartmentID:
+```sql
+DROP TABLE Employees
+
+CREATE TABLE Employees(
+  ID int NOT NULL,
+  Name nvarchar(30),
+  Birthday date,
+  Email nvarchar(30),
+  PositionID int,
+  DepartmentID int,
+  ManagerID int,
+CONSTRAINT PK_Employees PRIMARY KEY (ID), 
+CONSTRAINT FK_Employees_DepartmentID
+  FOREIGN KEY(DepartmentID)
+  REFERENCES Departments(ID)
+  ON DELETE CASCADE, 
+CONSTRAINT FK_Employees_PositionID
+  FOREIGN KEY(PositionID)
+  REFERENCES Positions(ID),
+CONSTRAINT FK_Employees_ManagerID
+  FOREIGN KEY (ManagerID)
+  REFERENCES Employees(ID)
+)
+INSERT Employees (ID,Name,Birthday,PositionID,DepartmentID,ManagerID)VALUES
+(1000,N'Иванов И.И.','19550219',2,1,NULL),
+(1001,N'Петров П.П.','19831203',3,3,1003),
+(1002,N'Сидоров С.С.','19760607',1,2,1000),
+(1003,N'Андреев А.А.','19820417',4,3,1000)
+```
+
+Удалим отдел с идентификатором 3 из таблицы Departments:
+```sql
+DELETE Departments WHERE ID=3
+```
+
+Посмотрим на данные таблицы Employees:
+```sql
+SELECT * FROM Employees
+```
+Как видим, данные по отделу 3 из таблицы Employees так же удалились.
+
+Опция ON UPDATE CASCADE ведет себя аналогично, но действует она при обновлении значения ID в справочнике. 
+
+Например, если мы поменяем ID должности в справочнике должностей, 
+то в этом случае будет производиться обновление DepartmentID в таблице Employees 
+на новое значение ID которое мы задали в справочнике. 
+
+Но в данном случае это продемонстрировать просто не получится, 
+т.к. у колонки ID в таблице Departments стоит опция IDENTITY, 
+которая не позволит нам выполнить следующий запрос (сменить идентификатор отдела 3 на 30):
+```sql
+UPDATE Departments
+SET ID=30
+WHERE ID=3
+```
+
+Главное понять суть этих 2-х опций ON DELETE CASCADE и ON UPDATE CASCADE,
+применять эти опции очень в редких случаях и хорошо подумать, 
+прежде чем указывать их в ссылочном ограничении, 
+т.к. при нечаянном удалении записи из таблицы справочника это может привести к большим проблемам и создать цепную реакцию.
+
 
 ---
+
