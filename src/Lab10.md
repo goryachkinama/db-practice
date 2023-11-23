@@ -142,6 +142,20 @@ CHECK (city IN ('London', 'New York', 'San Jose', 'Barselona')),
 comm decimal CHECK (comm<1));
 ```
 
+Вы можете также использовать CHECK в качестве табличного ограничения. 
+Это полезно в тех случаях, когда вы хотите включить более одного поля строки в условие.
+Предположим, что комиссионные .15 и выше будут разрешены только для продавца из Барселоны. 
+
+Вы можете указать это со следующим табличным ограничением CHECK:
+```sql
+CREATE TABLE Salespeople
+(snum integer NOT NULL UNIQUE,
+sname char (10) NOT NULL UNIQUE,
+city char(10),
+comm decimal,
+CHECK (comm < .15 OR city = 'Barcelona'))
+```
+
 ---
 
 ### ON DELETE и ON UPDATE
