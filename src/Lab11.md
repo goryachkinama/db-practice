@@ -414,6 +414,23 @@ CLOSE MyCursor
 DEALLOCATE MyCursor
 ```
 
+Пример 5: Создайте курсор, содержащий список учеников, с его помощью выведите учеников с четной позицией:
+```sql
+DECLARE MyCursor CURSOR SCROLL
+FOR
+SELECT
+ID, Фамилия, Предмет, Школа, Баллы
+FROM Ученики
+OPEN MyCursor
+FETCH ABSOLUTE 2 FROM MyCursor
+WHILE @@FETCH_STATUS = 0
+BEGIN
+FETCH RELATIVE 2 FROM MyCursor
+END
+CLOSE MyCursor
+DEALLOCATE MyCursor
+```
+
 ---
 
 ### Использование переменных в курсорах
