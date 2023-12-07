@@ -137,32 +137,41 @@ CSV представляет собой компактный текстовый 
 
 1. В обозревателе объектов Object Explorer выберите целевую базу данных, 
   щелкните по ней правой кнопкой мыши и выберите из контекстного меню команду Tasks --> Import Data (Задачи --> Импорт данных)
-<img src="https://github.com/goryachkinama/db-practice/assets/144112831/3972a01a-2dbe-4a11-98dc-dc56a3c92b5f" style="width: 300px"/>
-3. На экране появится диалоговое окно, в котором нужно выбрать источник данных DataSource из выпадающего списка.
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/3972a01a-2dbe-4a11-98dc-dc56a3c92b5f" style="width: 600px"/>
+
+2. На экране появится диалоговое окно, в котором нужно выбрать источник данных DataSource из выпадающего списка.
    Выберите вариант Flat File Source и нажмите кнопку Next.
-4. На следующем экране укажите путь до файла CSV на жестком диске.
+
+3. На следующем экране укажите путь до файла CSV на жестком диске.
    Иногда для файла нужно снять галочку «Column names in the first data row», если в файле не содержатся заголовки столбцов в первой строке.
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/bab85770-30cf-4418-ad8e-afe45c965c00)  
-5. После этого SQL Server Management Studio загрузит файл и отобразит данные в таблице
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/5688e443-005c-4cb0-a7e3-e4b798ecc39d)
-6. Обратите внимание, что программа автоматически определит разделитель между столбцами и строками в CSV-файле.
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/bab85770-30cf-4418-ad8e-afe45c965c00" style="width: 600px"/>
+
+4. После этого SQL Server Management Studio загрузит файл и отобразит данные в таблице
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/5688e443-005c-4cb0-a7e3-e4b798ecc39d" style="width: 600px"/>
+
+5. Обратите внимание, что программа автоматически определит разделитель между столбцами и строками в CSV-файле.
    Вы также можете настроить параметры столбцов (по умолчанию SSMS задаст столбцы в формате NVARCHAR(50) с названиями Column 0, Column 1 и т.д.)
    Перейдите на вкладку Advanced в левом боковом меню
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/e713ff63-3e35-4c78-9482-3380778244d7)
-7. В примере были изменены названия столбцов. Если у вас есть строки длиной больше 50, попросите SQL Server проверить все столбцы в файле.
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/e713ff63-3e35-4c78-9482-3380778244d7" style="width: 600px"/>
+
+6. В примере были изменены названия столбцов. Если у вас есть строки длиной больше 50, попросите SQL Server проверить все столбцы в файле.
    Это можно сделать с помощью кнопки Suggest Types (Предложить типы).
    SQL Server проанализирует первые 100 строк в файле и укажет предлагаемые типы для каждого столбца.
    В процессе проверки указывается ошибка. В зависимости от размера файла вы можете выбрать вариант, чтобы просмотреть весь файл или просто выбранные поля.   
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/7b4f61fb-55ae-4b55-a111-82268a4b5012)
-8. На следующем экране вы можете выбрать таблицу, в которую нужно импортировать данные.
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/7b4f61fb-55ae-4b55-a111-82268a4b5012" style="width: 600px"/>
+
+7. На следующем экране вы можете выбрать таблицу, в которую нужно импортировать данные.
    Здесь можно выбрать одну из существующих таблиц в базе данных, либо таблицу dbo.report, которую SSMS сгенерирует автоматически.
    Я рекомендую использовать второй вариант, а потом вручную преобразовать типы данных в основную таблицу.
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/1f25d74c-c71c-4b48-b744-f26d97672c07)
-10. После всех выполненных шагов SQL Server Management Studio отобразит процесс выполнения, сгенерирует таблицу report и заполнит ее данными
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/612971f4-e612-4c13-b138-19acdc1749cf)
-11. На следующем рисунке отображена сгенерированная таблица report в окне Object Explorer
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/3023cc98-f97b-4b41-a689-4fec01c8a792)
-12. Выполниние следующей инструкции позволит получить результаты, аналогичные подходу с использованием кода:
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/1f25d74c-c71c-4b48-b744-f26d97672c07" style="width: 600px"/>
+
+8. После всех выполненных шагов SQL Server Management Studio отобразит процесс выполнения, сгенерирует таблицу report и заполнит ее данными
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/612971f4-e612-4c13-b138-19acdc1749cf" style="width: 600px"/>
+
+9. На следующем рисунке отображена сгенерированная таблица report в окне Object Explorer
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/3023cc98-f97b-4b41-a689-4fec01c8a792)
+
+10. Выполниние следующей инструкции позволит получить результаты, аналогичные подходу с использованием кода:
 ```sql
 INSERT INTO CSV_Export 
 SELECT CONVERT(datetime, DateReport, 105), -- Строку в дату
