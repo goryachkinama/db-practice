@@ -30,7 +30,7 @@ title: Лабораторная работа 14. C#
 
 ---
 
-### [Коннект с C#](https://metanit.com/sharp/adonetcore/)
+### [Работа с БД в C#](https://metanit.com/sharp/adonetcore/)
 
 Все функции приведены для WinForms без LINQ, потому что это самый
 очевидный и прямолинейный вариант, ради которого обычно много думать не надо.
@@ -44,8 +44,10 @@ title: Лабораторная работа 14. C#
 Чтобы обратиться к классу в папке из другого места, можно написать *название папки*.*название класса* или using *название проекта*.*название папки*.
 
 Примеры:
+```cs
 private CLASSES.Task selectedTask = null;
 using demo4.UTILS;
+```
 
 #### Создание класса со строкой подключения
 
@@ -68,10 +70,10 @@ using demo4.UTILS;
 Пример класса:
 ```cs
 namespace demo4.UTILS {
-internal class ConnectionString {
-public static string ConnStr = @"Data Source=localhost;Initial Catalog=demo1;Integrated
-Security=True";
-}
+  internal class ConnectionString {
+  public static string ConnStr = @"Data Source=localhost;Initial Catalog=demo1;Integrated
+  Security=True";
+  }
 }
 ```
 
@@ -108,13 +110,13 @@ FROM [demo1].[dbo].[User]
 
 public class User
 {
-public int ID { get; set; }
-public string Password { get; set; }
-public string FirstName { get; set; }
-public string MiddleName { get; set; }
-public string LastName { get; set; }
-public string Login { get; set; }
-public bool IsDeleted { get; set; }
+  public int ID { get; set; }
+  public string Password { get; set; }
+  public string FirstName { get; set; }
+  public string MiddleName { get; set; }
+  public string LastName { get; set; }
+  public string Login { get; set; }
+  public bool IsDeleted { get; set; }
 }
 
 Как класс, так и его свойства должны быть public, чтобы другие части кода могли с ними работать.
@@ -141,6 +143,7 @@ System.Data.SqlClient; (это получится единственный кл�
 берутся из готовых работ, которые я сейчас переделывать не собираюсь.
 
 Пример:
+```cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -152,25 +155,28 @@ using System.Security.Cryptography;
 using demo4.CLASSES;
 namespace demo4.UTILS
 {
-internal class DataWork {
-static string ConnStr = ConnectionString.ConnStr;
+  internal class DataWork {
+  static string ConnStr = ConnectionString.ConnStr;
+  }
 }
-}
+```
 
 Шаблон функции:
+```cs
 public static *тип возвращаемого значения* *название*(*параметры*)
 {
-using (SqlConnection conn = new SqlConnection(ConnStr))
-{
-conn.Open();
-string sql = *запрос*;
-*действия с запросом*
-if (*успешно*) {
-return *значение*;
+  using (SqlConnection conn = new SqlConnection(ConnStr))
+  {
+    conn.Open();
+    string sql = *запрос*;
+    *действия с запросом*
+    if (*успешно*) {
+       return *значение*;
+    }
+    throw new Exception(*текст исключения*);
+  }
 }
-throw new Exception(*текст исключения*);
-}
-}
+```
 
 Исключение нужно, во-первых, чтобы визуалка не ругалась, что «не все пути к коду возвращают значение», 
 когда функция любого типа, кроме void, во-вторых, так можно сразу задать сообщение, 
@@ -180,19 +186,21 @@ throw new Exception(*текст исключения*);
 
 После того, как были созданы папки, можно перенести форму, созданную при
 генерации проекта, в нужную папку. Однако, просто перенести файл в папку почему-то
-не работает. Нужно перейти в файл и подписать название папки после namespace
-*название проекта*
+не работает. Нужно перейти в файл и подписать название папки после namespace *название проекта*
+```cs
 namespace demo4.FORMS
 {
 public partial class LoginForm : Form
-Теперь в program.cs нужно изменить параметр в Application.Run на необходимую
-форму:
+```
+Теперь в program.cs нужно изменить параметр в Application.Run на необходимую форму:
+```cs
 static void Main()
 {
-Application.EnableVisualStyles();
-Application.SetCompatibleTextRenderingDefault(false);
-Application.Run(new FORMS.LoginForm());
+   Application.EnableVisualStyles();
+   Application.SetCompatibleTextRenderingDefault(false);
+   Application.Run(new FORMS.LoginForm());
 }
+```
 
 Визуалка будет ругаться, причем на очень много вещей сразу. Чинится простым
 запуском программы и перепросмотром файлов. Почему – вопрос хороший.
@@ -210,41 +218,43 @@ Application.Run(new FORMS.LoginForm());
 достаточно двух textbox`ов (с label к каждому из них) и кнопки.
 
 Функция для получения пользователя по его логину и паролю:
+```cs
 public static User GetUser(string login, string password)
 {
-using (SqlConnection conn = new SqlConnection(ConnStr))
-{
-conn.Open();
-
-string sql = "SELECT [ID], [Password], [FirstName], [MiddleName], [LastName], [Login],
-[IsDeleted] " +
-
-"FROM [User] " +
-"WHERE [Login] = @login " +
-"AND [Password] = @password " +
-"AND [IsDeleted] = 0";
-SqlCommand cmd = new SqlCommand(sql, conn);
-cmd.Parameters.AddWithValue("login", login);
-cmd.Parameters.AddWithValue("password", password);
-SqlDataReader reader = cmd.ExecuteReader();
-if (reader.Read())
-{
-User user = new User
-{
-ID = reader.GetInt32(0),
-Password = reader.GetString(1),
-FirstName = reader.GetString(2),
-MiddleName = reader.GetString(3),
-LastName = reader.GetString(4),
-Login = reader.GetString(5),
-IsDeleted = reader.GetBoolean(6)
-};
-return user;
+   using (SqlConnection conn = new SqlConnection(ConnStr))
+   {
+      conn.Open();
+   
+      string sql = "SELECT [ID], [Password], [FirstName], [MiddleName], [LastName], [Login],
+      [IsDeleted] " +
+      
+      "FROM [User] " +
+      "WHERE [Login] = @login " +
+      "AND [Password] = @password " +
+      "AND [IsDeleted] = 0";
+      SqlCommand cmd = new SqlCommand(sql, conn);
+      cmd.Parameters.AddWithValue("login", login);
+      cmd.Parameters.AddWithValue("password", password);
+      SqlDataReader reader = cmd.ExecuteReader();
+      if (reader.Read())
+      {
+         User user = new User
+         {
+            ID = reader.GetInt32(0),
+            Password = reader.GetString(1),
+            FirstName = reader.GetString(2),
+            MiddleName = reader.GetString(3),
+            LastName = reader.GetString(4),
+            Login = reader.GetString(5),
+            IsDeleted = reader.GetBoolean(6)
+         };
+         return user;
+      }
+      throw new Exception("Пользователь не найден. Проверьте правильность данных и повторите
+      попытку входа.");
+   }
 }
-throw new Exception("Пользователь не найден. Проверьте правильность данных и повторите
-попытку входа.");
-}
-}
+```
 
 Сначала все соответствует шаблону. Используется подключение, оно же открывается. 
 В запросе стоит перечислить все получаемые поля, это пригодится позже.
@@ -262,25 +272,27 @@ throw new Exception("Пользователь не найден. Проверь�
 Код формы:
 
 Весь код на данной форме находится в кнопке:
+```cs
 private void LoginBtn_Click(object sender, EventArgs e)
 {
-User user;
-try
-{
-user = DataWork.GetUser(LoginTxt.Text, PasswordTxt.Text);
+   User user;
+   try
+   {
+      user = DataWork.GetUser(LoginTxt.Text, PasswordTxt.Text);
+   }
+   catch (Exception ex)
+   {
+      MessageBox.Show(ex.Message);
+      return;
+   }
+   this.Hide();
+   MainForm MF = new MainForm(user);
+   MF.ShowDialog();
+   LoginTxt.Text = String.Empty;
+   PasswordTxt.Text = String.Empty;
+   this.Show();
 }
-catch (Exception ex)
-{
-MessageBox.Show(ex.Message);
-return;
-}
-this.Hide();
-MainForm MF = new MainForm(user);
-MF.ShowDialog();
-LoginTxt.Text = String.Empty;
-PasswordTxt.Text = String.Empty;
-this.Show();
-}
+```
 
 Код состоит, по сути, из трех частей, не считая объявления переменной user.
 Первая часть пытается с помощью try..catch присвоить пользователю значение,
@@ -297,18 +309,19 @@ this.Show();
 Для начала нужно подключить библиотеку: using System.Security.Cryptography;
 
 Для шифрования используйте функцию:
+```cs
 public static string GetHash(string login, string password)
 {
-string salt1 = "^8{-";
-string salt2 = "&>nm";
-string pass = login + salt1 + password + salt2;
-using (var hash = SHA256.Create())
-
-{
-return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(pass)).Select(x =>
-x.ToString("X2")));
+   string salt1 = "^8{-";
+   string salt2 = "&>nm";
+   string pass = login + salt1 + password + salt2;
+   using (var hash = SHA256.Create())
+   {
+      return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(pass)).Select(x =>
+      x.ToString("X2")));
+   }
 }
-}
+```
 
 Salt1 и salt2 – это соль – неизменная часть, прибавляющаяся к паролю спереди и/или сзади. 
 Логин передается как изменяемая часть – перец. 
@@ -321,48 +334,50 @@ cmd.Parameters.AddWithValue("password", GetHash(login, password));
 для этого пользоваться не получится, можно, например, переписать все пароли такой
 функцией (объяснений не будет, потому что никто в здравом уме такое делать не будет):
 
+```cs
 public static void HashAllPasswords()
 {
-List<User> list = GetUserList();
-foreach (var user in list)
-{
-HashPassword(user);
-}
+   List<User> list = GetUserList();
+   foreach (var user in list)
+   {
+      HashPassword(user);
+   }
 }
 public static List<User> GetUserList()
 {
 List<User> list = new List<User>();
-using (SqlConnection conn = new SqlConnection(ConnStr))
-{
-conn.Open();
-string sql = "select ID, [Login], [Password] " +
-"from[User] ";
-SqlCommand cmd = new SqlCommand(sql, conn);
-SqlDataReader reader = cmd.ExecuteReader();
-while (reader.Read())
-{
-User user = new User();
-user.ID = reader.GetInt32(0);
-user.Login = reader.GetString(1);
-user.Password = reader.GetString(2);
-list.Add(user);
-}
-return list;
-}
+   using (SqlConnection conn = new SqlConnection(ConnStr))
+   {
+      conn.Open();
+      string sql = "select ID, [Login], [Password] " +
+      "from[User] ";
+      SqlCommand cmd = new SqlCommand(sql, conn);
+      SqlDataReader reader = cmd.ExecuteReader();
+      while (reader.Read())
+      {
+         User user = new User();
+         user.ID = reader.GetInt32(0);
+         user.Login = reader.GetString(1);
+         user.Password = reader.GetString(2);
+         list.Add(user);
+      }
+      return list;
+   }
 }
 public static void HashPassword(User user)
 {
 
-using (SqlConnection conn = new SqlConnection(ConnStr))
-{
-conn.Open();
-string sql = "update [User] set [Password] = @password where [User].ID = @id";
-SqlCommand cmd = new SqlCommand(sql,conn);
-cmd.Parameters.AddWithValue("password", GetHash(user.Login, user.Password));
-cmd.Parameters.AddWithValue("id", user.ID);
-cmd.ExecuteNonQuery();
+   using (SqlConnection conn = new SqlConnection(ConnStr))
+   {
+      conn.Open();
+      string sql = "update [User] set [Password] = @password where [User].ID = @id";
+      SqlCommand cmd = new SqlCommand(sql,conn);
+      cmd.Parameters.AddWithValue("password", GetHash(user.Login, user.Password));
+      cmd.Parameters.AddWithValue("id", user.ID);
+      cmd.ExecuteNonQuery();
+   }
 }
-}
+```
 
 Учитывайте, что её нужно прогнать только ОДИН раз.
 
@@ -377,50 +392,56 @@ cmd.ExecuteNonQuery();
 #### Проверка роли пользователя
 Для того, чтобы узнать роль пользователя, когда они разнесены по разным
 таблицам, можно воспользоваться таким запросом:
+```cs
 public static bool IsExec(User user)
 {
-using (SqlConnection conn = new SqlConnection(ConnStr))
-{
-conn.Open();
-string sql = "select * from [Executor] where ID = @id";
-SqlCommand cmd = new SqlCommand(sql,conn);
-cmd.Parameters.AddWithValue("id", user.ID);
-SqlDataReader reader = cmd.ExecuteReader();
-return reader.HasRows();
-}
+   using (SqlConnection conn = new SqlConnection(ConnStr))
+   {
+      conn.Open();
+      string sql = "select * from [Executor] where ID = @id";
+      SqlCommand cmd = new SqlCommand(sql,conn);
+      cmd.Parameters.AddWithValue("id", user.ID);
+      SqlDataReader reader = cmd.ExecuteReader();
+      return reader.HasRows();
+   }
+```
 Функция bool, т.е. логическая. Запросом мы выбираем все подходящие поля в
 другой таблице. В данном случае ID пользователей и ID исполнителей совпадали,
 поэтому запрос достаточно простой. Здесь используется HasRows() – тоже логическая
 функция, которая возвращает, есть ли ряды в полученных по запросу данных.
 Используется эта функция максимально прямо:
+```cs
 if (IsExec(user))
 {
-*делаете, что вам нужно*
+   *делаете, что вам нужно*
 }
+```
 
 Загрузка вариантов (например, для фильтрации) в
 ComboBox
 Функция:
+```cs
 public static List<string> GetExecList(int managerID)
 {
-List<string> list = new List<string>();
-using (SqlConnection conn = new SqlConnection(ConnStr))
-{
-conn.Open();
-string sql = "select [User].FirstName, [User].MiddleName, [User].LastName " +
-"from[User],[Executor] " +
-"where Executor.ID = [User].ID " +
-"and Executor.ManagerID = @ManagerID";
-SqlCommand cmd = new SqlCommand(sql, conn);
-cmd.Parameters.AddWithValue("ManagerID", managerID);
-SqlDataReader reader = cmd.ExecuteReader();
-while (reader.Read())
-{
-list.Add($"{reader.GetString(0)} {reader.GetString(1)} {reader.GetString(2)}");
+   List<string> list = new List<string>();
+   using (SqlConnection conn = new SqlConnection(ConnStr))
+   {
+      conn.Open();
+      string sql = "select [User].FirstName, [User].MiddleName, [User].LastName " +
+      "from[User],[Executor] " +
+      "where Executor.ID = [User].ID " +
+      "and Executor.ManagerID = @ManagerID";
+      SqlCommand cmd = new SqlCommand(sql, conn);
+      cmd.Parameters.AddWithValue("ManagerID", managerID);
+      SqlDataReader reader = cmd.ExecuteReader();
+      while (reader.Read())
+      {
+         list.Add($"{reader.GetString(0)} {reader.GetString(1)} {reader.GetString(2)}");
+      }
+      return list;
+   }
 }
-return list;
-}
-}
+```
 
 Эта функция возвращает список из строк, в данном случае – ФИО исполнителей, подчиняющихся определенному менеджеру. 
 Список создается до чтения, чтобы в него можно было добавлять ряды. 
@@ -431,12 +452,14 @@ return list;
 Этот код должен прогоняться каждый раз, когда вам нужно загрузить варианты в
 combobox. Обычно это один раз, при создании формы, однако, если в какой-то момент
 варианты должны меняться, тогда при каждой смене.
+```cs
 ExecutorCmb.Items.Clear();
 ExecutorCmb.Items.Add("");
 foreach (string execName in DataWork.GetExecList(User.ID))
 {
-ExecutorCmb.Items.Add(execName);
+   ExecutorCmb.Items.Add(execName);
 }
+```
 
 Сначала вычищаются все варианты, которые были до этого через Clear().
 После этого добавляется один пустой вариант (если он нужен), он же может быть вариантом «все». 
@@ -455,27 +478,29 @@ ExecutorCmb.Items.Add(execName);
 название, это пригодится позже.
 
 Функция для получения данных:
+```cs
 public static DataSet GetExecTasks(User user, string statusFilter)
 {
-DataSet ds = new DataSet();
-using (SqlConnection conn = new SqlConnection(ConnStr))
-{
-conn.Open();
-string sql = " select Task.Title, Task.[Status], [User].FirstName " +
-"from[User], Executor, Task " +
-"where Task.ExecutorID = Executor.ID " +
-"and Executor.ID = [User].ID " +
-"and Executor.ID = @id";
-if (!String.IsNullOrEmpty(statusFilter))
-sql += " and Task.Status = @status";
-sql += " order by Task.CreateDateTime desc";
-SqlDataAdapter ada = new SqlDataAdapter(sql, conn);
-ada.SelectCommand.Parameters.AddWithValue("id", user.ID);
-ada.SelectCommand.Parameters.AddWithValue("status", statusFilter);
-ada.Fill(ds);
-return ds;
+   DataSet ds = new DataSet();
+   using (SqlConnection conn = new SqlConnection(ConnStr))
+   {
+      conn.Open();
+      string sql = " select Task.Title, Task.[Status], [User].FirstName " +
+      "from[User], Executor, Task " +
+      "where Task.ExecutorID = Executor.ID " +
+      "and Executor.ID = [User].ID " +
+      "and Executor.ID = @id";
+      if (!String.IsNullOrEmpty(statusFilter))
+      sql += " and Task.Status = @status";
+      sql += " order by Task.CreateDateTime desc";
+      SqlDataAdapter ada = new SqlDataAdapter(sql, conn);
+      ada.SelectCommand.Parameters.AddWithValue("id", user.ID);
+      ada.SelectCommand.Parameters.AddWithValue("status", statusFilter);
+      ada.Fill(ds);
+      return ds;
+   }
 }
-}
+```
 
 Это единственный случай, когда используется адаптер, а не ридер, потому что
 нужно засунуть данные в DataSet. Здесь немного по-другому добавляются параметры,
@@ -484,10 +509,12 @@ return ds;
 Использование в формах:
 
 Поскольку возвращается DataSet, можно для отрисовки делать так:
+```cs
 private void Render()
 {
-TasksDataGrid.DataSource = DataWork.GetExecTasks(this.User, this.statusFilter).Tables[0];
+   TasksDataGrid.DataSource = DataWork.GetExecTasks(this.User, this.statusFilter).Tables[0];
 }
+```
 
 Теперь при каждом изменении параметров нужно вызывать эту функцию Render().
 
