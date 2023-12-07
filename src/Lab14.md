@@ -108,6 +108,7 @@ SELECT TOP (1000) [ID]
 FROM [demo1].[dbo].[User]
 ```
 
+```cs
 public class User
 {
   public int ID { get; set; }
@@ -118,6 +119,7 @@ public class User
   public string Login { get; set; }
   public bool IsDeleted { get; set; }
 }
+```
 
 Как класс, так и его свойства должны быть public, чтобы другие части кода могли с ними работать.
 
