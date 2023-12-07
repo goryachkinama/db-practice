@@ -34,7 +34,7 @@ title: Лабораторная работа 13. Динамический SQL, X
 
 ---
 
-### [Использование динамического SQL]()
+### [Использование динамического SQL](https://learn.microsoft.com/ru-ru/sql/odbc/reference/dynamic-sql?view=sql-server-ver16)
 
 В интерактивных приложениях часто состав SQL-запросов заранее не известен и может изменяться в зависимости от условий.
 Для решения таких ситуаций используется динамический SQL. Запросы формируются в виде текстовых строк непосредственно во время работы программы. 
@@ -83,7 +83,7 @@ DROP TABLE #TEMP
 
 ---
 
-### [Вывод данных в формате XML]()
+### [Вывод данных в формате XML](https://learn.microsoft.com/ru-ru/sql/relational-databases/xml/for-xml-sql-server?view=sql-server-ver16)
 
 Результат выполнения запроса можно получать в формате XML. Для этого в запросе необходимо указать предложение FOR XML.
 В предложении FOR XML можно указать один из следующих режимов:
@@ -107,7 +107,7 @@ FOR XML RAW
 
 ---
 
-### [Вывод данных в формате JSON]()
+### [Вывод данных в формате JSON](https://learn.microsoft.com/ru-ru/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver16)
 
 Результат выполнения запроса можно получать в формате JSON. Для этого в запросе необходимо указать предложение FOR JSON. 
 Предложение FOR JSON упрощает клиентские приложения, делегируя форматирование выходных данных JSON из приложения в SQL Server.
@@ -193,7 +193,7 @@ SELECT TOP 100 * FROM CSV_Export;
 
 ---
 
-### Использование оператора BULK INSERT
+### [Использование оператора BULK INSERT](https://learn.microsoft.com/ru-ru/sql/t-sql/statements/bulk-insert-transact-sql?view=sql-server-ver16)
 
 Оператор BULK INSERT в SQL Server позволяет осуществлять импорт данных из файла в таблицу.
 В предложении WITH для данного оператора можно задавать опции.
