@@ -137,7 +137,7 @@ CSV представляет собой компактный текстовый 
 
 1. В обозревателе объектов Object Explorer выберите целевую базу данных, 
   щелкните по ней правой кнопкой мыши и выберите из контекстного меню команду Tasks --> Import Data (Задачи --> Импорт данных)
-![image](https://github.com/goryachkinama/db-practice/assets/144112831/3972a01a-2dbe-4a11-98dc-dc56a3c92b5f)
+<img src="https://github.com/goryachkinama/db-practice/assets/144112831/3972a01a-2dbe-4a11-98dc-dc56a3c92b5f" style="width: 300px"/>
 3. На экране появится диалоговое окно, в котором нужно выбрать источник данных DataSource из выпадающего списка.
    Выберите вариант Flat File Source и нажмите кнопку Next.
 4. На следующем экране укажите путь до файла CSV на жестком диске.
