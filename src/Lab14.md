@@ -97,9 +97,9 @@ namespace UP_Demo.Classes
    public class DataBase
    {
       /// Объявление строки подключения с БД
-      SqlConnection sqlConnection = new SqlConnection(@&quot;Server=Anastasia-
+      SqlConnection sqlConnection = new SqlConnection(@"Server=Anastasia-
       ПК;Database=Trade;Trusted_Connection=true;MultipleActiveResultSets=true;TrustServerCertificate=true;encr
-      ypt=false&quot;);
+      ypt=false");
       /// Метод для открытия соединения с БД
       public void OpenConnection()
       {
@@ -149,7 +149,6 @@ namespace UP_Demo.Classes
 }
 ```
 
-Если, работа данного класса вам непонятна, можете почитать материал, ссылки приложены в
 #### Создание классов для БД
 
 По-хорошему, на каждую сущность (таблицу) в БД создается свой класс. 
