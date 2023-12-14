@@ -51,7 +51,7 @@ using demo4.UTILS;
 
 #### Создание класса со строкой подключения
 
-Этот класс делается в папке UTILS. Формально, он состоит из одной публичной
+Этот класс делается в папке UTILS или в папке Classes. Формально, он состоит из одной публичной
 статичной переменной, в которой лежит строка подключения к вашей БД. 
 Не забывайте, что названия должны отражать суть.
 
@@ -78,10 +78,78 @@ namespace demo4.UTILS {
 ```
 
 Если объявить элемент класса как static, это позволяет не создавать экземпляр класса, когда он вам нужен.
-
 @ перед строкой означает, что она будет использоваться именно в таком виде,
 игнорируя все специальные символы, применяемые для форматирования (например, /), внутри.
 
+Также класс DataBase довольно хорошо «вычищает» код от запросов, оставляя только
+понятные названия функций. Еще такой подход позволяет спокойно писать только запросы или
+только код в формах, не задумываясь о другой части. В первом случае вы просто потом
+используете эти методы, во втором закрываете комментариями нерабочую часть и открываете,
+когда нужная функция появляется. К тому же, зная, где лежат все запросы, их легко
+редактировать.
+
+Пример:
+```cs
+using System.Data.SqlClient;
+using System.Data;
+namespace UP_Demo.Classes
+{
+   public class DataBase
+   {
+      /// Объявление строки подключения с БД
+      SqlConnection sqlConnection = new SqlConnection(@&quot;Server=Anastasia-
+      ПК;Database=Trade;Trusted_Connection=true;MultipleActiveResultSets=true;TrustServerCertificate=true;encr
+      ypt=false&quot;);
+      /// Метод для открытия соединения с БД
+      public void OpenConnection()
+      {
+         // если состояние строки закрыто, то открываем
+         if (sqlConnection.State == System.Data.ConnectionState.Closed)
+         {
+            sqlConnection.Open();
+         }
+      }
+      /// Метод для закрытия соединения с БД, обратный методу выше
+      
+      public void CloseConnection()
+      {
+         if (sqlConnection.State == System.Data.ConnectionState.Open)
+         {
+            sqlConnection.Close();
+         }
+      }
+      /// Метод, возвращающий строку подключения
+      public SqlConnection GetConnection()
+      {
+         return sqlConnection;
+      }
+      /// Метод для обработки запросов типа Select
+      public DataTable SqlSelect(string s)
+      {
+         SqlCommand command = new SqlCommand(s); // создаем команду с запросом
+         command.Connection = GetConnection(); // открываем соединение с БД
+         SqlDataAdapter adapter = new SqlDataAdapter(command); // адаптируем данные
+         DataTable table = new DataTable(); // создаем таблицу
+         adapter.Fill(table); // через адаптер заполняем ее данными
+         return table; // возвращаем таблицу
+      }
+      /// Метод для обработки запросов типа Insert
+      public SqlCommand SqlInsert(string querystring)
+      {
+         OpenConnection(); // открыли соединение
+         SqlCommand command = new SqlCommand(querystring); //передали команду
+         command.Connection = GetConnection(); //передали строку подключения
+         command.ExecuteNonQuery(); // просто выполняет sql-выражение и возвращает количество
+         измененных записей.
+         // Подходит для sql-выражений INSERT, UPDATE, DELETE, CREATE.
+         CloseConnection(); // закрыли соединение
+         return command; // вернули команду
+      }
+   }
+}
+```
+
+Если, работа данного класса вам непонятна, можете почитать материал, ссылки приложены в
 #### Создание классов для БД
 
 По-хорошему, на каждую сущность (таблицу) в БД создается свой класс. 
