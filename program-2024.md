@@ -27,7 +27,7 @@
 [Транзакции](https://info-comp.ru/transactions-in-t-sql) и параллелизм. 
 [Управление транзакциями в MS SQL Server](https://professorweb.ru/my/sql-server/2012/level3/3_14.php). ACID-свойства транзакций.
 Классические проблемы управления транзакциями. 
-Блокировки. Селект с блокировкой (Select for update), пример с deadlock (код, когда блокируется крест-накрест).
+[Блокировки](https://professorweb.ru/my/sql-server/2012/level3/3_15.php). Селект с блокировкой (Select for update), пример с deadlock (код, когда блокируется крест-накрест).
 Распределенная транзакция. 
 Уровни изоляции транзакций.
 Системные таблицы в MS SQL Server.
