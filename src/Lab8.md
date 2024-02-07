@@ -114,6 +114,120 @@ DROP VIEW <название>
 При попытке его обновить, мы будем получать ошибку вида 
 "View or function название_представления is not updatable because the modification affects multiple base tables."
 
+### [Обновление данных с помощью представления](https://professorweb.ru/my/sql-server/2012/level3/3_7.php)
+
+Инструкцию UPDATE можно применять с представлением, как будто бы это была базовая таблица. При модифицировании строк представления также модифицируется содержимое таблицы в его основе. Запрос в примере создает представление, посредством которого затем модифицируется таблица Works_on:
+
+```sql
+USE SampleDb;
+
+GO
+CREATE VIEW view_p1
+    AS SELECT EmpId, Job
+    FROM Works_on
+    WHERE ProjectNumber = 'p1';
+
+GO
+UPDATE view_p1
+    SET Job = NULL
+    WHERE Job = 'Менеджер';
+```
+
+Операцию обновления представления view_p1 в примере выше можно рассматривать 
+эквивалентной выполнению следующей инструкции UPDATE:
+
+```sql
+UPDATE Works_on
+    SET Job = NULL
+    WHERE Job = 'Менеджер'
+        AND ProjectNumber = 'p1';
+```
+
+Логическое значение предложения WITH CHECK OPTION для инструкции UPDATE имеет такое же значение,
+как и для инструкции INSERT. Использование предложения WITH CHECK OPTION в инструкции UPDATE показано в примере ниже:
+
+```sql
+USE SampleDb;
+
+GO
+CREATE VIEW view_100000
+    AS SELECT Number, Budget
+    FROM Project
+    WHERE Budget > 100000
+    WITH CHECK OPTION;
+
+GO
+UPDATE view_100000
+    SET Budget = 93000
+    WHERE Number = 'p3';
+```
+
+Здесь компонент Database Engine проверяет, будет ли измененное значение столбца Budget 
+давать значение True в условии предложения WHERE инструкции SELECT. 
+Попытка изменения значения завершается неудачей, поскольку условие не удовлетворяется,
+т.е. вставляемое значение 93000 не больше, чем значение 100000.
+
+В примере ниже показано представление, которое нельзя использовать для изменения значений в таблице, на которой основано представление:
+
+```sql
+USE SampleDb;
+
+GO
+CREATE VIEW view_Pound (projectNumber, budgetPounds)
+    AS SELECT Number, Budget * 0.65
+    FROM Project
+    WHERE Budget > 100000;
+
+GO
+SELECT *
+    FROM view_Pound;
+```
+
+### Представление в котором нельзя обновить данные
+
+Представление view_Pound нельзя использовать с инструкцией UPDATE (или с инструкцией INSERT), 
+поскольку значения столбца budgetPounds являются результатом вычисления арифметического выражения, 
+а не первоначальными значениями столбца таблицы, на которой основано это представление.
+
+### Удаление данных с помощью представления
+
+С помощью представления можно удалить строки из таблицы, на которой оно основано, как это показано в примере ниже:
+
+```sql
+USE SampleDb;
+
+GO
+CREATE VIEW view_project_p1
+    AS SELECT EmpId, Job
+    FROM Works_on
+    WHERE ProjectNumber = 'p1';
+
+GO
+DELETE FROM view_project_p1
+    WHERE Job = 'Консультант';
+```
+
+Запрос в примере создает представление, посредством которого затем удаляются строки из таблицы Works_on.
+В отличие от инструкций INSERT и UPDATE, инструкция DELETE допускает значения, 
+получаемые из констант или выражений, в столбце представления, 
+используемого для удаления строк из таблицы, на которой оно основано.
+
+В примере ниже показано представление, посредством которого можно удалять строки, но не вставлять строки или изменять значения столбцов:
+
+```sql
+USE SampleDb;
+
+GO
+CREATE VIEW view_budget (budgetReduction)
+    AS SELECT Budget * 0.9
+    FROM Project;
+
+GO
+    DELETE FROM view_budget;
+```
+
+Инструкция DELETE в примере выше удаляет все строки таблицы Project, на которой основано представление view_budget.
+
 ---
 
 ### [Табличные переменные](https://metanit.com/sql/sqlserver/10.3.php)
