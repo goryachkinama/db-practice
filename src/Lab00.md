@@ -11,6 +11,7 @@ title: Лабораторная работа 0
 ---
 
 ### Microsoft SQL Server
+
 * Одна из наиболее популярных систем управления базами данных в мире
 * Создатель: Microsoft
 * Первая версия вышла в 1987 году под Windows
@@ -25,11 +26,11 @@ title: Лабораторная работа 0
 * Разработчик: IBM
 * Стандартизован в 1989 году
 * Разновидности:
-* * PL/SQL (для Oracle Database, но поддерживается также в DB2 и Timesten), 
-* * PSQL (Interbase и Firebird) 
-* * SQL PL (DB2), 
-* * Transact-SQL (Microsoft SQL Server и Adaptive Server Enterprise)
-* * PL/pgSQL (PostgreSQL)
+ * PL/SQL (для Oracle Database, но поддерживается также в DB2 и Timesten), 
+ * PSQL (Interbase и Firebird) 
+ * SQL PL (DB2), 
+ * Transact-SQL (Microsoft SQL Server и Adaptive Server Enterprise)
+ * PL/pgSQL (PostgreSQL)
 
 ```sql
 SELECT ProductName,
