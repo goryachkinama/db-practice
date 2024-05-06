@@ -9,14 +9,15 @@ title: Лабораторная работа. Блокировки
 ### Задание
 
 Реализовать сценарии блокировок разного уровня, используя подсказки (задание типов блокировки):
-	1. deadlock
-	2. holdlock
- 	3. pagelock
-  	4. readpast
-   	5. rowlock
-    	6. tablock
-	7. updlock
- 	8. xlock
+
+1. deadlock
+2. holdlock
+3. pagelock
+4. readpast
+5. rowlock
+6. tablock
+7. updlock
+ 8. xlock
 
 ---
 
