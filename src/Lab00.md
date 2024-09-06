@@ -302,10 +302,12 @@ Management Studio поддерживает заливку данных из эл
 ![image](https://github.com/user-attachments/assets/8c377e9b-8442-4660-a061-fe16fe360681)
 
 3. В появившемся окне пройти далее (выбрать Next>)
-4. В качестве источника указать Microsoft Excel, по клику на кнопку "Обзор" выбрать нужный *.xlsx-файл и пройти далее (выбрать Next>) 
+4. В качестве источника указать Microsoft Excel, по клику на кнопку "Обзор" выбрать нужный *.xlsx-файл и пройти далее (выбрать Next>)
+
 ![image](https://github.com/user-attachments/assets/a161b5b0-396e-4688-a04d-d41c1dd82b3e)
 
 5. В назначени указать Provider for SQL Server, выбрать нужный сервер и базу данных, в которую будет осуществляться загрузка и пройти далее (выбрать Next>)
+
 ![image](https://github.com/user-attachments/assets/b7a3eb35-feae-448e-9f96-2a4f2d079c54)
 
 6. Пройти далее (выбрать Next>)
