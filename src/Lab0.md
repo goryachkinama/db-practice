@@ -32,20 +32,22 @@ CREATE DATABASE usersdb
  Если мы хотим задать вышеперечисленные настройки, то в скрипт добавится их перечень с необходимыми значениями:
 
 ```sql
-CREATE DATABASE [Имя БД] ON PRIMARY
+CREATE DATABASE [Имя БД]
+ON PRIMARY
 (
-NAME = <Логическое имя>,
-FILENAME = <Имя файла>,
-SIZE = <Нач.размер>,
-MAXSIZE = <Макс.размер>,
-FILEGROWTH = <Шаг> )
+	NAME = <Логическое имя>,
+	FILENAME = <Имя файла>,
+	SIZE = <Нач.размер>,
+	MAXSIZE = <Макс.размер>,
+	FILEGROWTH = <Шаг>
+)
 LOG ON
-9(
-NAME = <Логическое имя>,
-FILENAME = <Имя файла>,
-SIZE = <Нач.размер>,
-MAXSIZE = <Макс.размер>,
-FILEGROWTH = <Шаг> )
+(
+	NAME = <Логическое имя>,
+	FILENAME = <Имя файла>,
+	SIZE = <Нач.размер>,
+	MAXSIZE = <Макс.размер>,
+	FILEGROWTH = <Шаг>
 )
 ```
 ---
@@ -64,30 +66,31 @@ FOR ATTACH;
 
 ```sql
 CREATE DATABASE contactsdb
-  ON PRIMARY(FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\userstoredb.mdf')
-  FOR ATTACH;
+ON PRIMARY(FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\userstoredb.mdf')
+FOR ATTACH;
 ```
 ---
 
 ### Пример создания базы из файла с указанием других параметров:
 
 ```sql
-  CREATE DATABASE [publishing] ON PRIMARY
-  (
-  NAME = 'publishing',
-  FILENAME = 'D:\publishing.mdf' ,
-  SIZE = 5120KB ,
-  MAXSIZE = UNLIMITED,
-  FILEGROWTH = 1024KB )
-  LOG ON
-  (
-  NAME = 'publishing_log',
-  FILENAME = 'D:\publishing_log.ldf' ,
-  SIZE = 1024KB ,
-  MAXSIZE = 2048GB ,
-  FILEGROWTH = 10%
-  )
-  GO
+CREATE DATABASE [publishing]
+ON PRIMARY
+(
+	NAME = 'publishing',
+	FILENAME = 'D:\DB\MSSQL16.GOR2024\MSSQL\DATA\publishing.mdf' ,
+	SIZE = 5120KB ,
+	MAXSIZE = UNLIMITED,
+	FILEGROWTH = 1024KB
+)
+LOG ON
+(
+	NAME = 'publishing_log',
+	FILENAME = 'D:\DB\MSSQL16.GOR2024\MSSQL\DATA\publishing_log.ldf' ,
+	SIZE = 1024KB ,
+	MAXSIZE = 2048GB ,
+	FILEGROWTH = 10%
+)
 ```
 
 ---
@@ -122,8 +125,8 @@ DROP DATABASE contactsdb
 ```sql
 CREATE TABLE <Имя таблицы>
 (
-<Имя поля1> <Тип1> IDENTITY(NULL|NOTNULL),
-<Имя поля1> <Тип1> NOT NULL,
+	<Имя поля1> <Тип1> IDENTITY(NULL|NOTNULL),
+	<Имя поля1> <Тип1> NOT NULL,
 )
 ```
 
@@ -137,25 +140,26 @@ CREATE TABLE <Имя таблицы>
 
 * <IDENTITY NULL|NOT NULL> – поле счётчик.
 
-* Пример создания таблицы «employees» с помощью запроса:
+* Пример создания таблицы [employees] с помощью запроса:
 
 ```sql
-CREATE TABLE employees(
-E_ID int IDENTITY(1,1) NOT NULL,
-E_SURNAME NVARCHAR(20) NOT NULL,
-E_NAME NVARCHAR (20) NOT NULL,
-E_FNAME NVARCHAR (30) NULL,
-E_BIRTHDAY DATE NULL,
-E_SEX BIT NULL,
-E_POST INT NULL,
-E_ROOM INT NULL,
-E_PHONE NVARCHAR (10) NULL,
-E_INN NVARCHAR (12) NOT NULL,
-E_PASSP_NUMBER NVARCHAR (12) NOT NULL,
-E_PASSP_ORG NVARCHAR (50) NOT NULL,
-E_PASSP_DATE DATE NOT NULL,
-E_ADDRESS NVARCHAR (80) NULL,
-CONSTRAINT PK_employees PRIMARY KEY E_ID
+CREATE TABLE employees
+(
+	E_ID int IDENTITY(1,1) NOT NULL,
+	E_SURNAME NVARCHAR(20) NOT NULL,
+	E_NAME NVARCHAR(20) NOT NULL,
+	E_FNAME NVARCHAR(30) NULL,
+	E_BIRTHDAY DATE NULL,
+	E_SEX BIT NULL,
+	E_POST INT NULL,
+	E_ROOM INT NULL,
+	E_PHONE NVARCHAR(10) NULL,
+	E_INN NVARCHAR(12) NOT NULL,
+	E_PASSP_NUMBER NVARCHAR(12) NOT NULL,
+	E_PASSP_ORG NVARCHAR(50) NOT NULL,
+	E_PASSP_DATE DATE NOT NULL,
+	E_ADDRESS NVARCHAR(80) NULL,
+	CONSTRAINT PK_E_ID PRIMARY KEY(E_ID)
 )
 ```
 ---
@@ -169,9 +173,9 @@ CONSTRAINT PK_employees PRIMARY KEY E_ID
 Для указания внешнего ключа таблицы нужно добавить конструкцию FOREIGN KEY в конструкцию CREATE TABLE :
 
 ```sql
-  FOREIGN KEY <имя внешнего ключа> REFERENCES <таблица первичного ключа>
-  ON UPDATE <операция обновления>
-  ON DELETE <операция удаления>
+FOREIGN KEY <имя внешнего ключа> REFERENCES <таблица первичного ключа>
+ON UPDATE <операция обновления>
+ON DELETE <операция удаления>
 ```
  
 Имена столбцов внешних ключей указываются после ключевых слов FOREIGN KEY. 
@@ -180,40 +184,65 @@ CONSTRAINT PK_employees PRIMARY KEY E_ID
 Если же имена столбцов не являются частью конструкции PRIMARY KEY, 
 необходимо перечислить столбцы первичного ключа в конструкции REFERENCES .
 
-Тогда создание таблицы Employees с помощью запроса будет выглядеть следующим образом:
+Создадим ещё одну таблицу [posts] с первичным ключом [P_ID], чтобы ссылаться на него.
 
 ```sql
-CREATE TABLE Employees
+CREATE TABLE posts
 (
-E_ID INT IDENTITY (1, 1) NOT NULL,
-E_SURNAME NVARCHAR(20) NOT NULL,
-E_NAME NVARCHAR (20) NOT NULL,
-E_FNAME NVARCHAR (30) NULL,
-E_BIRTHDAY DATE NULL,
-E_SEX BIT NULL,
-E_POST INT NULL,
-E_ROOM INT NULL,
-E_PHONE NVARCHAR(10) NULL,
-E_INN NVARCHAR(12) NOT NULL,
-E_PASSP_NUMBER NVARCHAR (12) NOT NULL,
-E_PASSP_ORG NVARCHAR (50) NOT NULL,
-E_PASSP_DATE DATE NOT NULL,
-E_ADDRESS NVARCHAR (80) NULL,
-CONSTRAINT PK_E_ID PRIMARY KEY E_ID,
-CONSTRAINT FK_E_POSTS FOREIGN KEY (E_POST) REFERENCES Posts(P_ID)
-ON UPDATE NO ACTION
-ON DELETE SET NULL
-);
+	P_ID INT IDENTITY(1,1) NOT NULL,
+	P_POST NVARCHAR(30) NOT NULL,
+	P_SAL INT NULL,
+	CONSTRAINT PK_E_ID PRIMARY KEY(P_ID)
+)
+```
+
+Тогда создание таблицы [employees] с помощью запроса будет выглядеть следующим образом:
+
+```sql
+CREATE TABLE employees
+(
+	E_ID INT IDENTITY(1, 1) NOT NULL,
+	E_SURNAME NVARCHAR(20) NOT NULL,
+	E_NAME NVARCHAR(20) NOT NULL,
+	E_FNAME NVARCHAR(30) NULL,
+	E_BIRTHDAY DATE NULL,
+	E_SEX BIT NULL,
+	E_POST INT NULL,
+	E_ROOM INT NULL,
+	E_PHONE NVARCHAR(10) NULL,
+	E_INN NVARCHAR(12) NOT NULL,
+	E_PASSP_NUMBER NVARCHAR(12) NOT NULL,
+	E_PASSP_ORG NVARCHAR(50) NOT NULL,
+	E_PASSP_DATE DATE NOT NULL,
+	E_ADDRESS NVARCHAR(80) NULL,
+	CONSTRAINT PK_E_ID PRIMARY KEY(E_ID),
+	CONSTRAINT FK_E_POSTS FOREIGN KEY(E_POST) REFERENCES posts(P_ID)
+	ON UPDATE NO ACTION
+	ON DELETE SET NULL
+)
 ```
 
 Если таблица уже создана для добавления в нее внешнего ключа необходимо воспользоваться конструкцией ALTER TABLE.
 Добавление внешнего ключа с помощью конструкции ALTER TABLE будет выглядеть следующим образом:
 
 ```sql
-ALTER TABLE Employees
-ADD FOREIGN KEY (E_POST)
-REFERENCES Posts (P_ID)
+ALTER TABLE employees
+ADD CONSTRAINT FK_E_POST FOREIGN KEY (E_POST)
+REFERENCES posts (P_ID)
 ```
+Чтобы удалить внешний ключ, надо удалить ограничение (CONSTRAINT). 
+Это делается так же, как удаление столбца с помощью ALTER TABLE, но вместо COLUMN используется CONSTRAINT.
+
+```sql
+ALTER TABLE <Имя таблицы> 
+DROP CONSTRAINT <Имя внешнего ключа>
+```
+Пример:
+```sql
+ALTER TABLE employees
+DROP CONSTRAINT FK_E_POST
+```
+Внимание: удаление внешнего ключа удалит только связь, столбец E_POST останется нетронутым. 
 
 Аналогично для всех остальных таблиц необходимо проделать те же самые действия.
 
@@ -248,11 +277,14 @@ VALUES (<Значения полей>)
 Пример:
 
 ```sql
-INSERT INTO Posts (P_POST, P_SAL)
+INSERT INTO posts (P_POST, P_SAL)
 VALUES ('Менеджер', 15000)
+```
 Или для добавления множества записей можно использовать конструкция
 из следующего примера:
-INSERT INTO Posts VALUES
+
+```sql
+INSERT INTO posts VALUES
 ('Менеджер', 15000),
 ('Редактор', 20000),
 ('Программист', 50000),
@@ -303,28 +335,31 @@ TRUNCATE TABLE <Имя таблицы>
 Пример использования этой конструкции представлен ниже:
 
 ```sql
-TRUNCATE TABLE Posts;
+TRUNCATE TABLE posts;
 ```
 
 Если условие указано, то удаляются записи поля, которые соответствуют условию.
 
-Пример: Удалить записи из таблицы Posts, у которых значение поля P_SAL > 100000 .
+Пример: Удалить записи из таблицы [posts], у которых значение поля P_SAL > 100000 .
 
 ```sql
-DELETE Posts
+DELETE posts
 WHERE P_SAL > 100000
 ```
 
-Пример: Удалить записи из таблицы Posts, у которых значение поля P_Post будет содержать часть слова «джер»
+Пример: Удалить записи из таблицы [posts], у которых значение поля P_POST будет содержать часть слова «джер»
 
 ```sql
-DELETE FROM Posts WHERE P_Post LIKE ‘джер’;
+DELETE FROM posts
+WHERE P_POST LIKE '%джер%';
 ```
 
-Пример: Удалить записи из таблицы Posts, у которых значение поля P_ID будет между 5 и 8.
+Пример: Удалить записи из таблицы [posts], у которых значение поля P_ID будет между 5 и 8.
 
 ```sql
-DELETE FROM Posts WHERE P_ID BETWEEN 5 AND 8;
+DELETE FROM posts
+WHERE P_ID
+BETWEEN 5 AND 8;
 ```
 ---
 
@@ -352,7 +387,7 @@ SET
 Пример: В таблице posts переименовать «Менеджера» в «Редактора» название
 
 ```sql
-UPDATE Pposts
+UPDATE posts
 SET P_POST = 'Редактор'
 WHERE P_POST = 'Менеджер'
 ```
