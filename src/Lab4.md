@@ -521,6 +521,8 @@ WHERE DATEDIFF(day, CreatedAt, GETDATE()) = 16
 
 Другой способ отформатировать дату без использования сложных конструкций вложенных функций - использовать FORMAT()
 
+Однако, по производительности FORMAT() [очень проигрывает](https://sql-ex.ru/blogs/?/FORMAT_-_udobnaJa,_no_dorogaJa_funkciJa_SQL_Server_chast_1.html) функции CONVERT()
+
 В общем виде синтаксис выглядит следующим образом:
 
 ```sql
@@ -544,7 +546,7 @@ mm - минуты 00-59
 ss - секунды 00-59
 tt - отображение приписки AM or PM
 d - день месяца 1-31 (if this is used on its own it will display the entire date)
-us - this shows the date using the US culture which is MM/DD/YYYY
+us - показывает дату в стиле US как MM/DD/YYYY
 
 Пример - форматирование номера:
 
@@ -569,8 +571,6 @@ SELECT FORMAT (getdate(), 'dd/MM/yyyy ') as date  -- выведет "21/03/2021"
 
 [Ещё примеры форматирования даты](https://www.mssqltips.com/sqlservertip/2655/format-sql-server-dates-with-format-function/)
 
-
-
 ---
 
 ### [Функции преобразования данных](https://metanit.com/sql/sqlserver/8.4.php)
@@ -589,7 +589,6 @@ SELECT FORMAT (getdate(), 'dd/MM/yyyy ') as date  -- выведет "21/03/2021"
 *	TRY_CONVERT
 *	PARSE
 *	TRY_PARSE
-
 
 ---
 
