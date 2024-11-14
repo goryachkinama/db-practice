@@ -443,6 +443,36 @@ END
 Для MULTI-STATEMENT функций оператор RETURN не имеет аргумента.
 Значение возвращаемой переменной функции возвращается как значение функции.
 
+Пример:
+
+```sql
+CREATE FUNCTION dbo.UdfGetProductsScrapStatus
+(
+@ScrapComLevel INT
+) 
+RETURNS @ResultTable TABLE
+( 
+ProductName VARCHAR(50), ScrapQty FLOAT, ScrapReasonDef VARCHAR(100), ScrapStatus VARCHAR(50)
+) AS BEGIN
+        INSERT INTO @ResultTable
+            SELECT PR.Name, SUM([ScrappedQty]), SC.Name, NULL
+                FROM [Production].[WorkOrder] AS WO
+                        INNER JOIN 
+                        Production.Product AS PR
+                        ON Pr.ProductID = WO.ProductID
+                        INNER JOIN Production.ScrapReason AS SC
+                        ON SC.ScrapReasonID = WO.ScrapReasonID
+                WHERE WO.ScrapReasonID IS NOT NULL
+                GROUP BY PR.Name, SC.Name
+UPDATE @ResultTable
+            SET ScrapStatus = 
+            CASE WHEN ScrapQty > @ScrapComLevel THEN 'Critical'
+            ELSE 'Normal'
+            END
+        
+RETURN
+END
+```
 
 #### Удаление пользовательских функций
 
