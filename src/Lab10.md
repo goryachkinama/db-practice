@@ -169,7 +169,7 @@ comm decimal,
 CHECK (comm < .15 OR city = 'Barcelona'))
 ```
 
-#### (Просмотр списка всех ограничений)[https://sky.pro/wiki/sql/sql-server-2008-kak-poluchit-ogranicheniya-vsekh-tablits/]
+#### [Просмотр списка всех ограничений](https://sky.pro/wiki/sql/sql-server-2008-kak-poluchit-ogranicheniya-vsekh-tablits/)
 
 Просмотреть, какие ограничения созданы в отдельно взятой таблице, можно следующим запросом:
 
