@@ -169,6 +169,16 @@ comm decimal,
 CHECK (comm < .15 OR city = 'Barcelona'))
 ```
 
+#### (Просмотр списка всех ограничений)[https://sky.pro/wiki/sql/sql-server-2008-kak-poluchit-ogranicheniya-vsekh-tablits/]
+
+Просмотреть, какие ограничения созданы в отдельно взятой таблице, можно следующим запросом:
+
+```sql
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_NAME = 'YourTable';
+```
+
 ---
 
 ### ON DELETE и ON UPDATE
