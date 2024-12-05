@@ -248,4 +248,5 @@ WHERE YEAR(event_date) = 2019;
 ### Еще
 
 [Колоночное и строчное хранение](https://bigdataschool.ru/blog/columnar-and-row-based-databases.html)
+
 [Файлы и файловые группы](https://infostart.ru/1c/articles/709159/)
