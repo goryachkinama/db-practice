@@ -5,7 +5,7 @@
 * [2. Импорт данных](src/demo/import.md)
 * [3. Реализация БД](src/demo/run.md)
 * [4. Сохранение БД](src/demo/save.md)
-* [5. Работа над своим проектом](src/program-2-project.md)
+* [5. Работа над своим проектом](https://github.com/goryachkinama/db-practice/blob/main/program-2-project.md)
 
 # Теоретические темы по БД 
 
