@@ -11,8 +11,12 @@
 
 [Практическое задание 2](import_test2.zip)
 
-[Практическое задание 3](import_test3.zip)
+[Практическое задание 3](Cleaning_import.xlsx)
 
-[Практическое задание 4](import_test4.zip)
+[Практическое задание 4](Petshop_import.xlsx)
+
+[Практическое задание 5](Cafe_import.xlsx)
+
+[Практическое задание 6](import_test6.zip)
 
 [Контрольная работа](import_ctrl.zip)
