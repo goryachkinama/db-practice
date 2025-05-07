@@ -7,8 +7,8 @@
 * [5. Заполнение БД](src/project/Lab_db_data.md)
 * [6*. Разработка приложения: Entity Framework(EF)](https://metanit.com/sharp/efcore/)
 * [7. Разработка приложения: пользователи и авторизация, защита данных](src/project/Lab_app_auth.md)
-* [8. Разработка приложения: CRUD-операции](src/project/Lab_app_crud.md)
-* [9. Разработка приложения: отображение данных, фильтрация, сортировка](src/project/Lab_app_grid.md)
+* [8. Разработка приложения: отображение данных, фильтрация, сортировка](src/project/Lab_app_grid.md)
+* [9. Разработка приложения: CRUD-операции](src/project/Lab_app_crud.md)
 * [10. Оптимизация БД. Транзакции. Блокировки](src/project/Lab_db_opt.md)
 * [11. Сдача индивидуального задания. Сдача отчета]()
 
@@ -100,9 +100,9 @@
 Защита данных в MS SQL Server.
 [SQL-инъекции](https://portswigger.net/web-security/learning-paths/sql-injection) с [заданиями](https://portswigger.net/web-security/all-labs#sql-injection).
 
-### [8. Разработка приложения: CRUD-операции](src/project/Lab_app_crud.md)
+### [8. Разработка приложения: отображение данных, фильтрация, сортировка](src/project/Lab_app_grid.md)
 
-### [9. Разработка приложения: отображение данных, фильтрация, сортировка](src/project/Lab_app_grid.md)
+### [9. Разработка приложения: CRUD-операции](src/project/Lab_app_crud.md)
 
 ### [10. Оптимизация БД. Индексы. Транзакции. Блокировки](src/project/Lab_db_opt.md)
 
