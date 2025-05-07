@@ -8,4 +8,4 @@
 
 ---
 
-[К списку заданий](../../blob/main/program-2-project.md)
+[К списку заданий](../../program-2-project.md)
