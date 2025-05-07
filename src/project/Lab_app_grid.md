@@ -1,6 +1,6 @@
 #  Разработка приложения: отображение данных, фильтрация, сортировка
 
-[DataGrid на WPF]([https://metanit.com/sharp/wpf/](https://metanit.com/sharp/wpf/5.14.php))
+[DataGrid на WPF](https://metanit.com/sharp/wpf/5.14.php)
 
 [ListView на WPF](https://metanit.com/sharp/wpf/5.9.php)
 
