@@ -7,3 +7,7 @@
 * Стек: C# + MS SQL Server
 * Графический интерфейс на выбор: WPF/Windows Forms
 * Entity Framework: по желанию
+
+---
+
+[К списку заданий](../../program-2-project.md)
