@@ -8,6 +8,17 @@
 * Графический интерфейс на выбор: WPF/Windows Forms
 * Entity Framework: по желанию
 
+В ТЗ необходимо написать подробный связный текст по аналогии с текстом, который дают на демо-экзамене,
+о том, как работает предметная область и выделить в нем сущности, по которым потом будет спроектирована БД.
+
+❕ Описание предметной области с выделение сущностей будет первый пунктом отчета о курсовой работе
+
+[Темы (жирным отмечены занятые темы)](https://github.com/goryachkinama/db-practice/blob/main/src/project/Lab_task.md)
+
+[Описание задачи (то, что должно быть в файле MS Word)](https://github.com/goryachkinama/db-practice/blob/main/src/project/Lab_db_er.md)
+
+[Пример текста с демо-экзамена](https://github.com/goryachkinama/db-practice/blob/main/src/assets/lab/v0.md)
+
 ---
 
 [К списку заданий](../../program-2-project.md)
