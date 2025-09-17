@@ -4,10 +4,6 @@
 
 [Вариант 2](assets/lab/v2.md)
 
-[Таблица академиков](assets/lab2/Академики.xlsx)
-
-[Таблицы студентов](assets/lab6/Students.xlsx)
-
 [К списку лабораторных >>>](../README.md)
 
 ---
