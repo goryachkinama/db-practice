@@ -320,7 +320,7 @@ Management Studio поддерживает заливку данных из эл
 
 [Таблица стран](assets/lab3/Страны.xlsx)
 
-[Таблица учеников](assets/lab5/Students.xlsx)
+[Таблица учеников](assets/lab5/Pupils.xlsx)
 
 [Таблицы студентов](assets/lab6/Students.xlsx)
 
