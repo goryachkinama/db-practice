@@ -1,7 +1,6 @@
 # Соединение таблиц и группировка
 
-![first slide](assets/mems/join.jpeg)
-
+<img src="assets/mems/join.jpeg" alt="IMG_9461" width="400"/>
 
 ## Лабораторная работа
 
