@@ -1,7 +1,3 @@
----
-title: Лабораторная работа 0
----
-
 ## Знакомство с MS SQL Server. Создание и заполнение таблиц
 
 ![first slide](assets/lab00/toy_story.png)
