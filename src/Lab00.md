@@ -1,4 +1,4 @@
-## Знакомство с MS SQL Server. Создание и заполнение таблиц
+# Знакомство с MS SQL Server. Создание и заполнение таблиц
 
 ![first slide](assets/lab00/toy_story.png)
 
